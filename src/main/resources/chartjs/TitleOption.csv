@@ -1,0 +1,10 @@
+Name,ScalaType,Default,Converter
+display,Boolean,= false,
+position,Position,= Top,.toString
+fullWidth,Boolean,= true,
+fontSize,Int,= 12,
+fontFamily,String,= null,
+fontColor,Color,= Color("#666"),.toString
+fontStyle,String,= ""bold"",
+padding,Int,= 10,
+text,String,= """",

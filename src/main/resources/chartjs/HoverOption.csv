@@ -1,0 +1,5 @@
+Name,ScalaType,Default,Converter
+mode,String,= ""nearest"",
+intersect,Boolean,= true,
+animationDuration,Int,= 400,
+onHover,(js.Array[js.Any]) => Unit,= null,

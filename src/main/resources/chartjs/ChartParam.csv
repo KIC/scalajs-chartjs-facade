@@ -1,0 +1,4 @@
+Name,ScalaType,Default,Converter
+`type`,ChartType,,.toString
+options,ChartOptions,,
+data,ChartData,= ChartData(),

@@ -1,0 +1,7 @@
+Name,ScalaType,Default,Converter
+enabled,Boolean,= true,
+mode,String,= ""nearest"",
+intersect,Boolean,= true,
+position,String,= ""average"",
+displayColors,Boolean,= true,
+callbacks,TooltipCallbacks,= TooltipCallbacks(),

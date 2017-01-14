@@ -1,0 +1,62 @@
+import com.xlson.groovycsv.CsvParser
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.apache.ivy:ivy:2.3.0"
+        classpath 'com.github.gtache:scalajs-plugin:0.2.0'
+        classpath 'com.xlson.groovycsv:groovycsv:1.1'
+    }
+}
+
+group 'scalajs-chartjs'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'scalajs-plugin'
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.11.8'
+    compile group: 'org.scala-js', name: 'scalajs-dom_sjs0.6_2.11', version: '0.9.1'
+}
+
+task genFacade << {
+    def facade = []
+
+    fileTree(dir: 'src/main/resources/chartjs',  include: '**/*.csv').forEach({f ->
+        println(f)
+
+        def classDetails = f.toString().replace(f.parent + "/", "").replace(".csv", "").split("_")
+        def className = classDetails[0]
+        def superClass = classDetails.length > 1 ? classDetails[1] : "js.Object"
+        def csv = CsvParser.parseCsv(f.text).toList()
+        def fields = csv.collect({"  var $it.Name: $it.ScalaType = js.native"}).join("\n")
+        def args = csv.collect({"$it.Name: $it.ScalaType $it.Default"}).join(", ")
+        def dynamics = "    js.Dynamic.literal(\n" +
+                csv.collect({"      $it.Name = $it.Name$it.Converter"}).join(",\n") +
+                "\n    ).asInstanceOf[$className]\n"
+
+        def traitt = "@js.native trait $className extends $superClass {\n$fields\n}\n"
+        def obj = "object $className {\n  def apply($args): $className = {\n$dynamics  }\n}"
+
+        facade << traitt + "\n" + obj + "\n"
+    })
+
+    // generate colors from http://colorbrewer2.org/?type=sequential&scheme=YlOrRd&n=9
+    def colors = ['rgb(158,1,66)','rgb(213,62,79)','rgb(244,109,67)','rgb(253,174,97)','rgb(254,224,139)','rgb(255,255,191)','rgb(230,245,152)','rgb(171,221,164)','rgb(102,194,165)','rgb(50,136,189)','rgb(94,79,162)']
+    def backgroundColor = 'Color(0, 0, 0)'
+    def palette = "object Palette {\n  val col = List(\n    " + colors.collect({it.replace("rgb", "Color")}).join(",\n    ") + "\n  )\n\n  val backGround = $backgroundColor\n}\n\n"
+
+    file('src/main/scala/chartjs/ChartJSFacade.scala').text = [
+            file('src/main/resources/chartjs/facade.head').text,
+            palette,
+            facade.join("\n"),
+            file('src/main/resources/chartjs/facade.foot').text,
+        ].join("\n")
+}

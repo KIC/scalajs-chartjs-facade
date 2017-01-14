@@ -1,0 +1,8 @@
+Name,ScalaType,Default,Converter
+display,Boolean,= true,
+position,Position,= Top,.toString
+fullWidth,Boolean,= true,
+onClick,"(Event, js.Object) => Unit",= null,
+onHover,"(Event, js.Object) => Unit",= null,
+reverse,Boolean,= false,
+labels,LegendLabels,= LegendLabels(),

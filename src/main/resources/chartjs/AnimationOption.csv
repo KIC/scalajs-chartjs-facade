@@ -1,0 +1,3 @@
+Name,ScalaType,Default,Converter
+duration, Int, =1000,
+easing,String, = ""easeOutQuart"",

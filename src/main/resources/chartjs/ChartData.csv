@@ -1,0 +1,5 @@
+Name,ScalaType,Default,Converter
+datasets,js.Array[DataSet],= js.Array(),
+labels,js.Array[String],= js.Array(),
+xLabels,js.Array[String],= js.Array(),
+yLabels,js.Array[String],= js.Array(),

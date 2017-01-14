@@ -1,0 +1,16 @@
+Name,ScalaType,Default,Converter
+responsive,Boolean,= true,
+responsiveAnimationDuration,Int,= 0,
+maintainAspectRatio,Boolean,= true,
+layout,LayoutOption,= LayoutOption(),
+title,TitleOption,= TitleOption(),
+scales,Scales,= Scales(),
+legend,LegendOption,= LegendOption(),
+tooltips,TooltipOption,= TooltipOption(),
+hover,HoverOption,= HoverOption(),
+elements,ElementOption,= ElementOption(),
+animation,AnimationOption,= AnimationOption(),
+events,Array[String], = null,.toJSArray
+onClick,(Chart) => Unit, = null,
+legendCallback,(Chart) => Unit, = null,
+onResize, () => Unit, = null,

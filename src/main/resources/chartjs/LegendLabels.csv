@@ -1,0 +1,9 @@
+Name,ScalaType,Default,Converter
+boxWidth,Int,= 40,
+fontSize,Int,= 12,
+fontStyle,String,= ""normal"",
+fontColor,Color,= Color("#666"),.toString
+fontFamily,String,= null,
+padding,Int,= 10,
+generateLabels,(Chart) => Unit, = null,
+usePointStyle,Boolean,= false,

@@ -1,0 +1,3 @@
+Name,ScalaType,Default,Converter
+showLines,Boolean,= true,
+spanGaps,Boolean,= false,

@@ -1,0 +1,5 @@
+Name,ScalaType,Default,Converter
+arc,ArcElement,= ArcElement(),
+line,LineElement,= LineElement(),
+point,PointElement,= PointElement(),
+rectangle,RectangleElement,= RectangleElement(),

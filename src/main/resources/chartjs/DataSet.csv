@@ -1,0 +1,9 @@
+Name,ScalaType,Default,Converter
+label,String,,
+data,js.Array[js.Any],= js.Array(),
+fill,Boolean,= false,
+lineTension,Double,= 0.0,
+backgroundColor,Color,= Palette.backGround,.toString
+borderWidth,Int,= 2,
+borderColor,Color,"= Color(0,0,0)",.toString
+borderCapStyle,CapStyle,= Round,.toString
